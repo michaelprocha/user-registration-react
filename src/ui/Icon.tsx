@@ -6,9 +6,8 @@ const iconVariants = tv({
   base: "",
   variants: {
     color: {
-      primary: "text-black",
+      primary: "text-black dark:text-white",
       secondary: "text-red-300",
-      tertiary: "text-white",
     },
     size: {
       sm: "size-4",

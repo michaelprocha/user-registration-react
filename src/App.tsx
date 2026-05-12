@@ -7,7 +7,6 @@ function App() {
   return (
     <>
       <div className="p-5 flex flex-col gap-4 bg-yellow-500">
-        <Trash className="fill-transparent size-10" />
         <Icon
           svg={Trash}
           color="primary"
@@ -19,12 +18,6 @@ function App() {
           color="secondary"
           size="md"
           animation="none"
-        />
-        <Icon
-          svg={Trash}
-          color="tertiary"
-          size="lg"
-          animation="spin"
         />
       </div>
       <div className="p-5 flex flex-col gap-4">
@@ -39,6 +32,18 @@ function App() {
           titulo
         </Text>
         <Text as="p">base</Text>
+        <Text
+          variant="lg"
+          as="p"
+        >
+          large text
+        </Text>
+        <Text
+          variant="md"
+          as="p"
+        >
+          medium text
+        </Text>
         <Text
           as="p"
           variant="sm"

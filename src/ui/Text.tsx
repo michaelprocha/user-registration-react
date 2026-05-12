@@ -5,11 +5,11 @@ const textVariant = tv({
   base: "",
   variants: {
     variant: {
-      xl: "font-extrabold font-grotesk text-7xl text-black",
-      lg: "font-extrabold font-grotesk text-lg text-black",
-      md: "font-inter font-normal text-xl text-gray-300",
-      base: "font-inter font-normal text-base text-black",
-      sm: "font-grotesk font-bold text-sm text-gray-500",
+      xl: "font-extrabold font-grotesk text-7xl text-black dark:text-white",
+      lg: "font-extrabold font-grotesk text-lg text-black dark:text-white",
+      md: "font-inter font-normal text-xl text-gray-300 dark:text-gray-700",
+      base: "font-inter font-normal text-base text-black dark:text-white",
+      sm: "font-grotesk font-bold text-sm text-gray-500 dark:text-gray-500",
     },
   },
   defaultVariants: {
