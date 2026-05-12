@@ -1,12 +1,14 @@
 import { Trash } from "lucide-react";
+import { Search } from "lucide-react";
 import Icon from "./ui/Icon";
 import Skeleton from "./ui/Skeleton";
 import Text from "./ui/Text";
+import Input from "./ui/Input";
 
 function App() {
   return (
     <>
-      <div className="p-5 flex flex-col gap-4 bg-yellow-500">
+      <div className="p-5 flex flex-col gap-4 bg-black">
         <Icon
           svg={Trash}
           color="primary"
@@ -20,11 +22,13 @@ function App() {
           animation="none"
         />
       </div>
-      <div className="p-5 flex flex-col gap-4">
-        <Skeleton className="h-21.5 border-2 md:border-y-2 md:border-x-0 border-gray-500" />
+      <div className="p-5 flex flex-col gap-4 bg-black">
         <Skeleton className="h-21.5 border-2 md:border-y-2 md:border-x-0 border-gray-100" />
       </div>
-      <div className="p-5 flex flex-col gap-4">
+      <div className="p-5 flex flex-col gap-4 bg-white">
+        <Skeleton className="h-21.5 border-2 md:border-y-2 md:border-x-0 border-gray-500" />
+      </div>
+      <div className="p-5 flex flex-col gap-4 bg-black">
         <Text
           as="h1"
           variant="xl"
@@ -50,6 +54,24 @@ function App() {
         >
           small
         </Text>
+      </div>
+      <div className="p-5 flex flex-col gap-4 bg-black">
+        <Input type="search" />
+      </div>
+      <div className="p-5 flex flex-col gap-4 bg-black">
+        <Input
+          icon={Search}
+          iconPosition="left"
+        />
+        <Input
+          variant="secondary"
+          icon={Search}
+          iconPosition="right"
+        />
+        <Input
+          variant="secondary"
+          size="lg"
+        />
       </div>
     </>
   );
