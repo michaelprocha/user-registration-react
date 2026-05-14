@@ -4,11 +4,12 @@ import Icon from "./ui/Icon";
 import Skeleton from "./ui/Skeleton";
 import Text from "./ui/Text";
 import Input from "./ui/Input";
+import Select from "./ui/Select";
 
 function App() {
   return (
     <>
-      <div className="p-5 flex flex-col gap-4 bg-black">
+      <div className="p-5 flex flex-col gap-4 bg-white dark:bg-black">
         <Icon
           svg={Trash}
           color="primary"
@@ -28,7 +29,7 @@ function App() {
       <div className="p-5 flex flex-col gap-4 bg-white">
         <Skeleton className="h-21.5 border-2 md:border-y-2 md:border-x-0 border-gray-500" />
       </div>
-      <div className="p-5 flex flex-col gap-4 bg-black">
+      <div className="p-5 flex flex-col gap-4 bg-white dark:bg-black">
         <Text
           as="h1"
           variant="xl"
@@ -55,10 +56,10 @@ function App() {
           small
         </Text>
       </div>
-      <div className="p-5 flex flex-col gap-4 bg-black">
+      <div className="p-5 flex flex-col gap-4 bg-white dark:bg-black">
         <Input type="search" />
       </div>
-      <div className="p-5 flex flex-col gap-4 bg-black">
+      <div className="p-5 flex flex-col gap-4 bg-white dark:bg-black">
         <Input
           icon={Search}
           iconPosition="left"
@@ -71,6 +72,11 @@ function App() {
         <Input
           variant="secondary"
           size="lg"
+        />
+      </div>
+      <div className="p-4 bg-white dark:bg-black">
+        <Select
+          options={[{ value: "opt1" }, { value: "opt2" }, { value: "opt3" }]}
         />
       </div>
     </>
