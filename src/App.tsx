@@ -76,7 +76,11 @@ function App() {
       </div>
       <div className="p-4 bg-white dark:bg-black">
         <Select
-          options={[{ value: "opt1" }, { value: "opt2" }, { value: "opt3" }]}
+          options={[
+            { value: "opt1" },
+            { value: "opt2" },
+            { value: "opt3", label: "Opção 3" },
+          ]}
         />
       </div>
     </>
