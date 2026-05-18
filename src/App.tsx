@@ -5,10 +5,12 @@ import Skeleton from "./ui/Skeleton";
 import Text from "./ui/Text";
 import Input from "./ui/Input";
 import Select from "./ui/Select";
+import Header from "./layouts/Header";
 
 function App() {
   return (
     <>
+      <Header />
       <div className="p-5 flex flex-col gap-4 bg-white dark:bg-black">
         <Icon
           svg={Trash}
