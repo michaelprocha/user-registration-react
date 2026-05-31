@@ -1,13 +1,17 @@
 import { Trash } from "lucide-react";
 import { Search } from "lucide-react";
-import Icon from "./ui/Icon";
-import Skeleton from "./ui/Skeleton";
-import Text from "./ui/Text";
-import Input from "./ui/Input";
-import Select from "./ui/Select";
-import Header from "./layouts/Header";
+import Icon from "./components/ui/Icon";
+import Skeleton from "./components/ui/Skeleton";
+import Text from "./components/ui/Text";
+import Input from "./components/ui/Input";
+import Select from "./components/ui/Select";
+import Header from "./components/layouts/Header";
+import InputSearch from "./components/common/InputSearch";
+import { useState } from "react";
+import UsersList from "./components/common/UsersList";
 
 function App() {
+  const [value, setValue] = useState("");
   return (
     <>
       <Header />
@@ -84,6 +88,15 @@ function App() {
             { value: "opt3", label: "Opção 3" },
           ]}
         />
+      </div>
+      <div className="p-4 bg-white dark:bg-black">
+        <InputSearch
+          value={value}
+          setValue={setValue}
+        />
+      </div>
+      <div className="p-4 bg-white dark:bg-black w-full">
+        <UsersList />
       </div>
     </>
   );
