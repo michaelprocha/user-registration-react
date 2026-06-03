@@ -9,6 +9,7 @@ import Header from "./components/layouts/Header";
 import InputSearch from "./components/common/InputSearch";
 import { useState } from "react";
 import UsersList from "./components/common/UsersList";
+import Footer from "./components/layouts/Footer";
 
 function App() {
   const [value, setValue] = useState("");
@@ -98,6 +99,7 @@ function App() {
       <div className="p-4 bg-white dark:bg-black w-full">
         <UsersList />
       </div>
+      <Footer />
     </>
   );
 }
