@@ -10,6 +10,7 @@ import InputSearch from "./components/common/InputSearch";
 import { useState } from "react";
 import UsersList from "./components/common/UsersList";
 import Footer from "./components/layouts/Footer";
+import UsuarioTitle from "./components/common/UsuarioTitle";
 
 function App() {
   const [value, setValue] = useState("");
@@ -100,6 +101,9 @@ function App() {
         <UsersList />
       </div>
       <Footer />
+      <div className="p-4 bg-white dark:bg-black w-full">
+        <UsuarioTitle />
+      </div>
     </>
   );
 }
