@@ -1,12 +1,20 @@
+import Text from "../ui/Text";
+
 function UsuarioTitle() {
   return (
     <div className="flex flex-col gap-3">
-      <h1 className="text-black dark:text-white text-6xl uppercase font-bold">
+      <Text
+        variant="xl"
+        className="uppercase font-bold"
+      >
         usuários
-      </h1>
-      <p className="text-gray-700 dark:text-gray-300 text-base">
+      </Text>
+      <Text
+        variant="base"
+        className="dark:text-gray-300 text-gray-700"
+      >
         Gerenciamento central do sistema operacional.
-      </p>
+      </Text>
     </div>
   );
 }
