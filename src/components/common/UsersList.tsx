@@ -1,60 +1,51 @@
-import Button from "../ui/Button";
-import Icon from "../ui/Icon";
-import { Pencil, Trash2 } from "lucide-react";
+import { tv } from "tailwind-variants";
+import User from "./User";
+
+const userListVariant = tv({
+  slots: {
+    table: "w-full flex flex-col",
+    head: "dark:bg-gray-700 bg-gray-300",
+    line: "flex w-full items-center py-4 border-y-2 dark:border-y-white border-y-black font-grotesk",
+    id: "uppercase flex-2 dark:text-white text-black",
+    name: "uppercase flex-4 text-left pl-2 dark:text-white text-black",
+    status: "uppercase flex-2 text-left dark:text-white text-black",
+    kids: "uppercase flex-1 dark:text-white text-black",
+    date: "uppercase flex-3 text-left pl-4 dark:text-white text-black",
+    number: "uppercase flex-3 text-left dark:text-white text-black",
+    action: "uppercase flex-1 dark:text-white text-black",
+    body: "font-grotesk",
+  },
+});
 
 function UsersList() {
+  const {
+    table,
+    head,
+    line,
+    id,
+    name,
+    status,
+    kids,
+    date,
+    number,
+    action,
+    body,
+  } = userListVariant();
   return (
-    <table className="w-full flex flex-col ">
-      <thead className="dark:bg-gray-700 bg-gray-300">
-        <tr className="flex w-full items-center py-4 border-y-2 dark:border-y-white border-y-black font-grotesk">
-          <th className="uppercase flex-2 dark:text-white text-black">ID</th>
-          <th className="uppercase flex-4 text-left pl-2 dark:text-white text-black">
-            Nome
-          </th>
-          <th className="uppercase flex-2 text-left dark:text-white text-black">
-            Estado civil
-          </th>
-          <th className="uppercase flex-1 dark:text-white text-black">
-            Filhos
-          </th>
-          <th className="uppercase flex-3 text-left pl-4 dark:text-white text-black">
-            Data de nascimento
-          </th>
-          <th className="uppercase flex-3 text-left dark:text-white text-black">
-            Número da sorte
-          </th>
-          <th className="uppercase flex-1 dark:text-white text-black">Ações</th>
+    <table className={table()}>
+      <thead className={head()}>
+        <tr className={line()}>
+          <th className={id()}>ID</th>
+          <th className={name()}>Nome</th>
+          <th className={status()}>Estado civil</th>
+          <th className={kids()}>Filhos</th>
+          <th className={date()}>Data de nascimento</th>
+          <th className={number()}>Número da sorte</th>
+          <th className={action()}>Ações</th>
         </tr>
       </thead>
-      <tbody className="font-grotesk">
-        <tr className="flex items-center py-4 border-b-2 dark:border-gray-500">
-          <td className="flex-2 dark:text-white text-black text-center">
-            asdf541
-          </td>
-          <td className="flex-4 dark:text-white text-black pl-2 capitalize">
-            Carlos Alberto de Nobrega
-          </td>
-          <td className="flex-2 dark:text-white text-black">Solteiro</td>
-          <td className="flex-1 dark:text-white text-black text-center uppercase">
-            Não
-          </td>
-          <td className="flex-3 dark:text-white text-black pl-4">17/01/1998</td>
-          <td className="flex-3 dark:text-white text-black text-left">07</td>
-          <td className="flex-1 dark:text-white text-black flex gap-2 items-center">
-            <Button className="border-2 dark:border-white dark:bg-black border-black bg-white p-1">
-              <Icon
-                svg={Pencil}
-                color="primary"
-              />
-            </Button>
-            <Button className="border-2 dark:border-white dark:bg-black border-black bg-white p-1">
-              <Icon
-                svg={Trash2}
-                color="primary"
-              />
-            </Button>
-          </td>
-        </tr>
+      <tbody className={body()}>
+        <User />
       </tbody>
     </table>
   );
