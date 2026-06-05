@@ -15,7 +15,7 @@ function Header({ link, ...props }: HeaderProps) {
   return (
     <header
       className={`border-b-2 border-black dark:border-white 
-    h-21 flex justify-between items-center px-8 bg-white dark:bg-black`}
+    h-21 flex justify-between items-center px-8 bg-gray-300 dark:bg-black`}
       {...props}
     >
       <Text

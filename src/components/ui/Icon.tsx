@@ -9,11 +9,13 @@ const iconVariants = tv({
       primary: "text-black dark:text-white",
       secondary: "text-red-300",
       tertiary: "text-white dark:text-black",
+      quaternary: "bg-yellow-300 text-black",
     },
     size: {
       sm: "size-4",
       md: "size-5",
       lg: "size-10",
+      xl: "size-15",
     },
     animation: {
       none: "",

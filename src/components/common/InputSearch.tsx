@@ -18,7 +18,7 @@ function InputSearch({ value, setValue, ...props }: InputSearchProps) {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      <Button className="bg-white p-2">
+      <Button className="bg-black dark:bg-white p-2">
         <Icon
           svg={UserRoundSearch}
           color="tertiary"

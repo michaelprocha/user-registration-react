@@ -6,7 +6,7 @@ const inputVariant = tv({
   slots: {
     container:
       "flex gap-2 p-2 items-center focus-within:border-blue-500 cursor-text",
-    input: "w-full outline-none bg-transparent",
+    input: "w-full outline-none bg-transparent text-black dark:text-white",
   },
   variants: {
     variant: {
