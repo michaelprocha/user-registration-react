@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer className="flex justify-between p-6 font-grotesk bg-black text-white border-t-4 border-white">
+    <footer className="flex justify-between p-6 font-grotesk bg-black text-white border-t-4 border-white mt-auto">
       <p className="text-base">
         © 2024 BAUHAUS SYSTEMS. FORM FOLLOWS FUNCTION.
       </p>

@@ -6,7 +6,7 @@ function MainLayout() {
   return (
     <>
       <Header />
-      <main>
+      <main className="dark:bg-black bg-white h-full px-6">
         <Outlet />
       </main>
       <Footer />
