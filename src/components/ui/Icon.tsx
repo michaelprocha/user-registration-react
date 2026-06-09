@@ -10,6 +10,7 @@ const iconVariants = tv({
       secondary: "text-red-300",
       tertiary: "text-white dark:text-black",
       quaternary: "bg-yellow-300 text-black",
+      dark: "text-black",
     },
     size: {
       sm: "size-4",
