@@ -1,5 +1,6 @@
 import { tv } from "tailwind-variants";
 import User from "./User";
+import useUsers from "../../hooks/useUsers";
 
 const userListVariant = tv({
   slots: {
@@ -18,6 +19,12 @@ const userListVariant = tv({
 });
 
 function UsersList() {
+  const { users, deleteUser } = useUsers();
+
+  const handleDeleteUser = (userId: string) => {
+    deleteUser(userId);
+  };
+
   const {
     table,
     head,
@@ -45,7 +52,13 @@ function UsersList() {
         </tr>
       </thead>
       <tbody className={body()}>
-        <User />
+        {users.map((user, index) => (
+          <User
+            key={`${index}-${user.id}-${user.name}`}
+            user={user}
+            handleDeleteUser={handleDeleteUser}
+          />
+        ))}
       </tbody>
     </table>
   );

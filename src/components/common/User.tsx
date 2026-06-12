@@ -2,6 +2,8 @@ import { tv } from "tailwind-variants";
 import Button from "../ui/Button";
 import Icon from "../ui/Icon";
 import { Pencil, Trash2 } from "lucide-react";
+import type UserType from "../../types/user.type";
+import useUser from "../../hooks/useUser";
 
 const userVariant = tv({
   slots: {
@@ -18,18 +20,24 @@ const userVariant = tv({
   },
 });
 
-function User() {
+type UserProps = {
+  user: UserType;
+  handleDeleteUser: (userId: string) => void;
+};
+
+function User({ user, handleDeleteUser }: UserProps) {
+  const { userState } = useUser(user);
   const { line, id, name, status, kids, date, number, actions, buttonAction } =
     userVariant();
   return (
     <>
       <tr className={line()}>
-        <td className={id()}>asdf541</td>
-        <td className={name()}>Carlos Alberto de Nobrega</td>
-        <td className={status()}>Solteiro</td>
-        <td className={kids()}>Não</td>
-        <td className={date()}>17/01/1998</td>
-        <td className={number()}>07</td>
+        <td className={id()}>{userState.id}</td>
+        <td className={name()}>{userState.name}</td>
+        <td className={status()}>{userState.maritalStatus}</td>
+        <td className={kids()}>{userState.kids}</td>
+        <td className={date()}>{`${userState.dataOfBirth}`}</td>
+        <td className={number()}>{userState.favoriteNumber}</td>
         <td className={actions()}>
           <Button className={buttonAction()}>
             <Icon
@@ -37,7 +45,10 @@ function User() {
               color="primary"
             />
           </Button>
-          <Button className={buttonAction()}>
+          <Button
+            className={buttonAction()}
+            onClick={() => handleDeleteUser(user.id)}
+          >
             <Icon
               svg={Trash2}
               color="primary"
