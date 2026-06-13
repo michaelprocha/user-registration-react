@@ -4,7 +4,13 @@ import { useState } from "react";
 import UsersList from "../components/common/UsersList";
 
 function Home() {
-  const [input, setInput] = useState<string>("");
+  const [inputToFilterList, setInputToFilterList] = useState<string>("");
+  const [filterList, setFilterList] = useState<string>("");
+
+  const handleFilterList = () => {
+    setFilterList(inputToFilterList);
+  };
+
   return (
     <>
       <div className="pt-16 pb-4 mb-14 flex items-end justify-between border-b-2 dark:border-white border-black">
@@ -23,11 +29,12 @@ function Home() {
           </Text>
         </div>
         <InputSearch
-          value={input}
-          setValue={setInput}
+          value={inputToFilterList}
+          setValue={setInputToFilterList}
+          onClick={handleFilterList}
         />
       </div>
-      <UsersList />
+      <UsersList filterList={filterList} />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import { tv } from "tailwind-variants";
 import User from "./User";
 import useUsers from "../../hooks/useUsers";
+import { useNavigate } from "react-router";
 
 const userListVariant = tv({
   slots: {
@@ -18,11 +19,20 @@ const userListVariant = tv({
   },
 });
 
-function UsersList() {
+type UserListProps = {
+  filterList: string;
+};
+
+function UsersList({ filterList }: UserListProps) {
   const { users, deleteUser } = useUsers();
+  const navigate = useNavigate();
 
   const handleDeleteUser = (userId: string) => {
     deleteUser(userId);
+  };
+
+  const HandleChangePageToEdit = () => {
+    navigate("/edit");
   };
 
   const {
@@ -52,13 +62,27 @@ function UsersList() {
         </tr>
       </thead>
       <tbody className={body()}>
-        {users.map((user, index) => (
-          <User
-            key={`${index}-${user.id}-${user.name}`}
-            user={user}
-            handleDeleteUser={handleDeleteUser}
-          />
-        ))}
+        {filterList
+          ? users
+              .filter(
+                (user) => user.name.toLowerCase() === filterList.toLowerCase(),
+              )
+              .map((user, index) => (
+                <User
+                  key={`${index}-${user.id}-${user.name}`}
+                  user={user}
+                  handleDeleteUser={handleDeleteUser}
+                  HandleChangePageToEdit={HandleChangePageToEdit}
+                />
+              ))
+          : users.map((user, index) => (
+              <User
+                key={`${index}-${user.id}-${user.name}`}
+                user={user}
+                handleDeleteUser={handleDeleteUser}
+                HandleChangePageToEdit={HandleChangePageToEdit}
+              />
+            ))}
       </tbody>
     </table>
   );

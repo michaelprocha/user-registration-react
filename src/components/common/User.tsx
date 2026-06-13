@@ -23,9 +23,10 @@ const userVariant = tv({
 type UserProps = {
   user: UserType;
   handleDeleteUser: (userId: string) => void;
+  HandleChangePageToEdit: () => void;
 };
 
-function User({ user, handleDeleteUser }: UserProps) {
+function User({ user, handleDeleteUser, HandleChangePageToEdit }: UserProps) {
   const { userState } = useUser(user);
   const { line, id, name, status, kids, date, number, actions, buttonAction } =
     userVariant();
@@ -39,7 +40,10 @@ function User({ user, handleDeleteUser }: UserProps) {
         <td className={date()}>{`${userState.dataOfBirth}`}</td>
         <td className={number()}>{userState.favoriteNumber}</td>
         <td className={actions()}>
-          <Button className={buttonAction()}>
+          <Button
+            className={buttonAction()}
+            onClick={HandleChangePageToEdit}
+          >
             <Icon
               svg={Pencil}
               color="primary"

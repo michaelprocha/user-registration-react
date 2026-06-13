@@ -31,14 +31,27 @@ export default function useUsers() {
     };
   }, []);
 
-  const deleteUser = (userId: string) => {
-    setUsers((users) =>
-      users.filter((user) => {
-        if (user.id !== userId) {
-          return user;
-        }
-      }),
-    );
+  const deleteUser = async (userId: string) => {
+    try {
+      const fetchDeleteUser = await fetch(
+        `http://localhost:3000/users/${userId}`,
+        {
+          method: "DELETE",
+        },
+      );
+
+      if (fetchDeleteUser.ok) {
+        setUsers((users) =>
+          users.filter((user) => {
+            if (user.id !== userId) {
+              return user;
+            }
+          }),
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return { users, deleteUser };

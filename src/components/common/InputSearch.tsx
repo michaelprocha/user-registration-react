@@ -7,9 +7,10 @@ import { type SetStateAction, type Dispatch } from "react";
 type InputSearchProps = {
   value: string;
   setValue: Dispatch<SetStateAction<string>>;
+  onClick: () => void;
 };
 
-function InputSearch({ value, setValue, ...props }: InputSearchProps) {
+function InputSearch({ value, setValue, onClick, ...props }: InputSearchProps) {
   return (
     <div className="flex">
       <Input
@@ -18,7 +19,10 @@ function InputSearch({ value, setValue, ...props }: InputSearchProps) {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      <Button className="bg-black dark:bg-white p-2">
+      <Button
+        className="bg-black dark:bg-white p-2"
+        onClick={onClick}
+      >
         <Icon
           svg={UserRoundSearch}
           color="tertiary"
