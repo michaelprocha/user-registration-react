@@ -5,6 +5,8 @@ import Text from "../components/ui/Text";
 import { SquareUserRound, ArrowRight } from "lucide-react";
 import Select from "../components/ui/Select";
 import Button from "../components/ui/Button";
+import useRegister from "../hooks/useRegister";
+import { useState, type ChangeEvent, type SubmitEvent } from "react";
 
 const registerVariant = tv({
   slots: {
@@ -18,7 +20,35 @@ const registerVariant = tv({
 });
 
 function Register() {
+  const [name, setName] = useState("");
+  const [maritalStatus, setMaritalStatus] = useState<string>("");
+  const [favoriteNumber, setFavoriteNumber] = useState<number>(0);
+  const [dataOfBirth, setDataOfBirth] = useState<string>("");
+  const [kids, setKids] = useState<boolean>(false);
+  const { registerNewUser } = useRegister();
   const { label, radio, divLabel, divBlockForm, divForm } = registerVariant();
+
+  const handleSelect = (event: ChangeEvent<HTMLSelectElement>) => {
+    setMaritalStatus(event.target.value);
+  };
+
+  const handleRadio = (event: ChangeEvent<HTMLInputElement>) => {
+    setKids(event.target.value === "yes");
+  };
+
+  const handleRegisterNewUser = (event: SubmitEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const newUser = {
+      name,
+      maritalStatus,
+      favoriteNumber,
+      dataOfBirth,
+      kids,
+    };
+    console.log(newUser);
+    registerNewUser(newUser);
+  };
+
   return (
     <>
       <div className="flex items-center justify-between border-b-2 dark:border-white border-black pb-2 pt-18">
@@ -35,13 +65,16 @@ function Register() {
           className="rounded-xl"
         />
       </div>
-      <form className="pt-12 pb-24">
+      <form
+        className="pt-12 pb-24"
+        onSubmit={(event) => handleRegisterNewUser(event)}
+      >
         <div className={divForm()}>
           <div className={divBlockForm()}>
             <div className={divLabel()}>
               <Text
                 as="label"
-                htmlFor="name-completo"
+                htmlFor="name"
                 className={label()}
                 variant="lg"
               >
@@ -49,13 +82,15 @@ function Register() {
               </Text>
               <Input
                 type="text"
-                id="name-completo"
+                id="name"
+                onChange={(event) => setName(event.target.value)}
+                value={name}
               />
             </div>
             <div className={divLabel()}>
               <Text
                 as="label"
-                htmlFor="data-de-nascimento"
+                htmlFor="dataOfBirth"
                 className={label()}
                 variant="lg"
               >
@@ -63,7 +98,9 @@ function Register() {
               </Text>
               <Input
                 type="date"
-                id="data-de-nascimento"
+                id="dataOfBirth"
+                onChange={(event) => setDataOfBirth(event.target.value)}
+                value={dataOfBirth}
               />
             </div>
           </div>
@@ -71,7 +108,7 @@ function Register() {
             <div className={divLabel()}>
               <Text
                 as="label"
-                htmlFor="estado-civil"
+                htmlFor="maritalStatus"
                 className={label()}
                 variant="lg"
               >
@@ -79,13 +116,15 @@ function Register() {
               </Text>
               <Select
                 options={[{ value: "Casado" }, { value: "Solteiro" }]}
-                id="estado-civil"
+                id="maritalStatus"
+                value={maritalStatus}
+                onChange={(event) => handleSelect(event)}
               />
             </div>
             <div className={divLabel()}>
               <Text
                 as="label"
-                htmlFor="luck-number"
+                htmlFor="favoriteNumber"
                 className={label()}
                 variant="lg"
               >
@@ -93,7 +132,11 @@ function Register() {
               </Text>
               <Input
                 type="number"
-                id="luck-number"
+                id="favoriteNumber"
+                onChange={(event) =>
+                  setFavoriteNumber(Number(event.target.value))
+                }
+                value={favoriteNumber}
               />
             </div>
             <div className="flex flex-col gap-4">
@@ -118,6 +161,8 @@ function Register() {
                     type="radio"
                     name="kids"
                     value={"yes"}
+                    checked={kids}
+                    onChange={(event) => handleRadio(event)}
                     id="yes"
                     className="border-none p-0"
                   />
@@ -135,6 +180,8 @@ function Register() {
                     type="radio"
                     name="kids"
                     value={"no"}
+                    checked={!kids}
+                    onChange={(event) => handleRadio(event)}
                     id="no"
                     className="border-none p-0"
                   />
@@ -143,7 +190,10 @@ function Register() {
             </div>
           </div>
         </div>
-        <Button className="flex gap-2 bg-yellow-300 border-2 border-black py-6 px-12 items-center ml-auto">
+        <Button
+          className="flex gap-2 bg-yellow-300 border-2 border-black py-6 px-12 items-center ml-auto"
+          type="submit"
+        >
           <Text
             variant="md"
             className="uppercase font-bold text-black"

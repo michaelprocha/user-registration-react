@@ -1,9 +1,8 @@
 export default interface UserType {
   id: string;
   name: string;
-  dataOfBirth: Date;
+  dataOfBirth: string;
   maritalStatus: string;
-  country: string;
   favoriteNumber: number;
   kids: boolean;
 }
