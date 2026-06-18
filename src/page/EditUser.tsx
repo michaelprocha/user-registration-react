@@ -1,8 +1,25 @@
 import Input from "../components/ui/Input";
 import Text from "../components/ui/Text";
 import Button from "../components/ui/Button";
+import { useSearchParams } from "react-router";
+import useEditUser from "../hooks/useEditUser";
+import { useEffect, useState } from "react";
 
 function EditUser() {
+  const [searchParams] = useSearchParams();
+  const { editUser } = useEditUser(searchParams.get("user"));
+  const [name, setName] = useState<string>(`${editUser.name}`);
+  // const [maritalStatus, setMaritalStatus] = useState<string>(
+  //   editUser.maritalStatus,
+  // );
+  // const [favoriteNumber, setFavoriteNumber] = useState<number>(
+  //   editUser.favoriteNumber,
+  // );
+  // const [dataOfBirth, setDataOfBirth] = useState<string>(editUser.dataOfBirth);
+  // const [kids, setKids] = useState<boolean>(editUser.kids);
+  console.log(name);
+  console.log(editUser.name);
+
   return (
     <>
       <div className="py-18 flex gap-16 max-w-6xl mx-auto">
@@ -39,13 +56,15 @@ function EditUser() {
               as={"label"}
               variant="lg"
               className="uppercase"
-              htmlFor="nome-completo"
+              htmlFor="name"
             >
               Nome completo
             </Text>
             <Input
               type="text"
-              id="nome-completo"
+              id="name"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
             />
           </div>
           <div className="flex gap-4 w-full border-b-2 border-dashed dark:border-white border-black pb-8">
@@ -54,13 +73,15 @@ function EditUser() {
                 as={"label"}
                 variant="lg"
                 className="uppercase"
-                htmlFor="data-dascimento"
+                htmlFor="dataOfBirth"
               >
                 Data nascimento
               </Text>
               <Input
                 type="date"
-                id="data-dascimento"
+                id="dataOfBirth"
+                // value={dataOfBirth}
+                // onChange={(event) => setDataOfBirth(event.target.value)}
               />
             </div>
             <div className="flex-1 flex flex-col gap-3">
@@ -68,13 +89,15 @@ function EditUser() {
                 as={"label"}
                 variant="lg"
                 className="uppercase"
-                htmlFor="numero-sorte"
+                htmlFor="favoriteNumber"
               >
                 Número da sorte
               </Text>
               <Input
                 type="number"
-                id="numero-sorte"
+                id="favoriteNumber"
+                // value={favoriteNumber}
+                // onChange={(event) => setName(event.target.value)}
               />
             </div>
           </div>

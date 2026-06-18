@@ -31,8 +31,8 @@ function UsersList({ filterList }: UserListProps) {
     deleteUser(userId);
   };
 
-  const HandleChangePageToEdit = () => {
-    navigate("/edit");
+  const HandleChangePageToEdit = (userId: string) => {
+    navigate(`/edit?user=${userId}`);
   };
 
   const {

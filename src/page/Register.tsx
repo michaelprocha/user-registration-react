@@ -20,7 +20,7 @@ const registerVariant = tv({
 });
 
 function Register() {
-  const [name, setName] = useState("");
+  const [name, setName] = useState<string>("");
   const [maritalStatus, setMaritalStatus] = useState<string>("");
   const [favoriteNumber, setFavoriteNumber] = useState<number>(0);
   const [dataOfBirth, setDataOfBirth] = useState<string>("");

@@ -23,7 +23,7 @@ const userVariant = tv({
 type UserProps = {
   user: UserType;
   handleDeleteUser: (userId: string) => void;
-  HandleChangePageToEdit: () => void;
+  HandleChangePageToEdit: (userId: string) => void;
 };
 
 function User({ user, handleDeleteUser, HandleChangePageToEdit }: UserProps) {
@@ -42,7 +42,7 @@ function User({ user, handleDeleteUser, HandleChangePageToEdit }: UserProps) {
         <td className={actions()}>
           <Button
             className={buttonAction()}
-            onClick={HandleChangePageToEdit}
+            onClick={() => HandleChangePageToEdit(userState.id)}
           >
             <Icon
               svg={Pencil}
