@@ -36,7 +36,7 @@ function User({ user, handleDeleteUser, HandleChangePageToEdit }: UserProps) {
         <td className={id()}>{userState.id}</td>
         <td className={name()}>{userState.name}</td>
         <td className={status()}>{userState.maritalStatus}</td>
-        <td className={kids()}>{userState.kids}</td>
+        <td className={kids()}>{`${userState.kids ? "Sim" : "Não"}`}</td>
         <td className={date()}>{`${userState.dataOfBirth}`}</td>
         <td className={number()}>{userState.favoriteNumber}</td>
         <td className={actions()}>
