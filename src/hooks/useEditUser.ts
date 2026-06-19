@@ -18,11 +18,8 @@ export default function useEditUser(userId: string | null) {
           const userToEdit = await fetchToEdit.json();
           const { dataOfBirth } = userToEdit;
           const dateToEdit = new Date(dataOfBirth)
-            .toLocaleDateString("en-US", {
-              day: "2-digit",
-              month: "2-digit",
-              year: "numeric",
-            })
+            .toISOString()
+            .split("T")[0]
             .toString();
           console.log(dateToEdit);
           setEditUser({ ...userToEdit, dataOfBirth: dateToEdit });
@@ -47,5 +44,31 @@ export default function useEditUser(userId: string | null) {
     };
   }, [userId]);
 
-  return { editUser };
+  const sendUserEdited = async (
+    userEdited: Pick<
+      UserType,
+      "name" | "favoriteNumber" | "dataOfBirth" | "kids" | "maritalStatus"
+    >,
+  ) => {
+    try {
+      const fetchSendUserEdit = await fetch(
+        `http://localhost:3000/users/${userId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userEdited),
+        },
+      );
+
+      if (fetchSendUserEdit.ok) {
+        console.log("editado com sucesso");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { editUser, sendUserEdited };
 }

@@ -5,7 +5,7 @@ import EditForm from "../components/common/EditForm";
 
 function EditUser() {
   const [searchParams] = useSearchParams();
-  const { editUser } = useEditUser(searchParams.get("user"));
+  const { editUser, sendUserEdited } = useEditUser(searchParams.get("user"));
 
   if (!editUser.name) {
     return (
@@ -66,7 +66,10 @@ function EditUser() {
             Modifique as credenciais e dados pessoais. A forma segue a função.
           </Text>
         </div>
-        <EditForm editUser={editUser} />
+        <EditForm
+          editUser={editUser}
+          sendUserEdited={sendUserEdited}
+        />
       </div>
     </>
   );

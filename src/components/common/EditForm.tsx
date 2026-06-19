@@ -2,13 +2,21 @@ import Text from "../ui/Text";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
 import type UserType from "../../types/user.type";
-import { useState, type ChangeEvent } from "react";
+import { useState, type ChangeEvent, type SubmitEvent } from "react";
+import { useNavigate } from "react-router";
 
 interface editFormProps {
   editUser: UserType;
+  sendUserEdited: (
+    userEdited: Pick<
+      UserType,
+      "dataOfBirth" | "favoriteNumber" | "kids" | "maritalStatus" | "name"
+    >,
+  ) => void;
 }
 
-function EditForm({ editUser }: editFormProps) {
+function EditForm({ editUser, sendUserEdited }: editFormProps) {
+  const navigate = useNavigate();
   const [name, setName] = useState<string>(editUser.name);
   const [maritalStatus, setMaritalStatus] = useState<string>(
     editUser.maritalStatus,
@@ -19,8 +27,6 @@ function EditForm({ editUser }: editFormProps) {
   const [dataOfBirth, setDataOfBirth] = useState<string>(editUser.dataOfBirth);
   const [kids, setKids] = useState<boolean>(editUser.kids);
 
-  console.log(editUser);
-
   const handleChangeStatus = (event: ChangeEvent<HTMLInputElement>) => {
     setMaritalStatus(event.target.value);
   };
@@ -29,8 +35,26 @@ function EditForm({ editUser }: editFormProps) {
     setKids(event.target.value === "yes");
   };
 
+  const handleCancelEdit = () => {
+    navigate("/");
+  };
+
+  const handleEditUser = (event: SubmitEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    sendUserEdited({
+      name,
+      dataOfBirth,
+      favoriteNumber,
+      kids,
+      maritalStatus,
+    });
+  };
+
   return (
-    <form className="border-2 px-6 pt-8 pb-6 dark:border-white border-black relative flex-1 flex flex-col gap-6">
+    <form
+      className="border-2 px-6 pt-8 pb-6 dark:border-white border-black relative flex-1 flex flex-col gap-6"
+      onSubmit={(event) => handleEditUser(event)}
+    >
       <div
         aria-hidden
         className="h-6 w-18 bg-yellow-300 border-2 dark:border-white border-black -rotate-3 absolute -top-3"
@@ -106,7 +130,7 @@ function EditForm({ editUser }: editFormProps) {
             <Input
               type="radio"
               name="estado"
-              id="Casado"
+              id="casado"
               value={"Casado"}
               className="border-none p-0"
               checked={maritalStatus === "Casado"}
@@ -152,7 +176,7 @@ function EditForm({ editUser }: editFormProps) {
             </Text>
             <Input
               type="radio"
-              name="estado"
+              name="kids"
               id="yes"
               value={"yes"}
               checked={kids}
@@ -171,7 +195,7 @@ function EditForm({ editUser }: editFormProps) {
             </Text>
             <Input
               type="radio"
-              name="estado"
+              name="kids"
               id="no"
               value={"no"}
               checked={kids}
@@ -182,7 +206,11 @@ function EditForm({ editUser }: editFormProps) {
         </div>
       </div>
       <div className="flex justify-end items-end gap-4">
-        <Button className="py-3 px-6 dark:bg-black bg-white border-2 dark:border-white border-black">
+        <Button
+          className="py-3 px-6 dark:bg-black bg-white border-2 dark:border-white border-black"
+          onClick={handleCancelEdit}
+          type="button"
+        >
           <Text
             className="uppercase font-bold font-grotesk dark:text-white text-black"
             variant="md"
@@ -190,7 +218,10 @@ function EditForm({ editUser }: editFormProps) {
             Descartar
           </Text>
         </Button>
-        <Button className="py-3 px-6 bg-yellow-300 border-2 dark:border-white border-black">
+        <Button
+          className="py-3 px-6 bg-yellow-300 border-2 dark:border-white border-black"
+          type="submit"
+        >
           <Text
             className="uppercase font-bold font-grotesk"
             variant="md"
