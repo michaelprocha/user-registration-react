@@ -16,7 +16,16 @@ export default function useUsers() {
         });
         if (fetchUsers.ok) {
           const arrayUser = await fetchUsers.json();
-          setUsers(arrayUser);
+          setUsers(
+            arrayUser.map((user: UserType) => {
+              return {
+                ...user,
+                dataOfBirth: new Date(user.dataOfBirth)
+                  .toLocaleDateString("pt-BR")
+                  .toString(),
+              };
+            }),
+          );
         }
       } catch (error) {
         setUsers([]);
