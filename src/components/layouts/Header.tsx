@@ -1,17 +1,12 @@
 import type { ComponentProps } from "react";
 import Text from "../ui/Text";
-import { NavLink } from "react-router";
+import { NavLink, useLocation } from "react-router";
 
-interface Link {
-  text: string;
-  link: string;
-}
+type HeaderProps = ComponentProps<"header">;
 
-type HeaderProps = ComponentProps<"header"> & {
-  link?: Link;
-};
-
-function Header({ link, ...props }: HeaderProps) {
+function Header({ ...props }: HeaderProps) {
+  const location = useLocation();
+  const { pathname } = location;
   return (
     <header
       className={`border-b-2 border-black dark:border-white 
@@ -25,9 +20,9 @@ function Header({ link, ...props }: HeaderProps) {
       >
         Usercore
       </Text>
-      {link && (
+      {pathname === "/" ? (
         <NavLink
-          to={link.link}
+          to={"/register"}
           className={`bg-yellow-300 border-2 border-black
         dark:border-white shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_rgba(250,250,250,1)]
         py-1 px-2`}
@@ -36,7 +31,21 @@ function Header({ link, ...props }: HeaderProps) {
             variant="lg"
             className="uppercase text-black dark:text-black"
           >
-            {link.text}
+            Cadastrar
+          </Text>
+        </NavLink>
+      ) : (
+        <NavLink
+          to={"/"}
+          className={`bg-yellow-300 border-2 border-black
+        dark:border-white shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_rgba(250,250,250,1)]
+        py-1 px-2`}
+        >
+          <Text
+            variant="lg"
+            className="uppercase text-black dark:text-black"
+          >
+            Usuarios
           </Text>
         </NavLink>
       )}
